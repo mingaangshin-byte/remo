@@ -1,0 +1,3 @@
+import Link from 'next/link';
+import {projects} from '@/lib/data';
+export default function Projects(){return <main className="page"><section className="content"><div className="page-hero"><div><p className="eyebrow">OUR WORK</p><h1 className="pixel">Our Projects</h1><p>지금, 우리는 각자의 프로젝트로<br/>파도를 만들어가고 있습니다.</p></div></div><div className="project-grid">{projects.map(p=><Link href={`/projects/${p.slug}`} className="project-card" key={p.slug}><div className="project-image"><span className="orange-fish">🐠</span></div><div className="project-body"><h2 className="pixel">{p.en}</h2><p>{p.tagline}</p><span className="status">진행중</span><span className="arrow">→</span></div></Link>)}</div></section></main>}

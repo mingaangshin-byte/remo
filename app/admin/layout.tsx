@@ -1,0 +1,1 @@
+export default function AdminLayout({children}:{children:React.ReactNode}){return <div className="admin-layout"><aside><a href="/" className="admin-logo pixel">REMO <small>Admin</small></a><nav><a href="/admin">⌂ 대시보드</a><a href="/about">◉ 팀 정보</a><a href="/projects">◈ 프로젝트</a><a href="/contact">✉ 문의</a></nav></aside><section className="admin-main">{children}</section></div>}
