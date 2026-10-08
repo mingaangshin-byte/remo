@@ -21,7 +21,10 @@ export default function MoodismSurvey() {
     setStatus('sending');
     setError('');
 
-    const data = new FormData(event.currentTarget);
+    // React의 이벤트 객체는 비동기 작업(await) 이후 currentTarget이 null이 될 수 있으므로
+    // submit 시작 시 form element를 별도로 보관합니다.
+    const form = event.currentTarget;
+    const data = new FormData(form);
     const payload = {
       purchaseIntent: String(data.get('purchaseIntent') || ''),
       improvement: String(data.get('improvement') || ''),
@@ -41,7 +44,7 @@ export default function MoodismSurvey() {
       if (!response.ok) throw new Error(result.error || '설문 제출에 실패했습니다.');
       setCoupon(result.couponCode);
       setStatus('done');
-      event.currentTarget.reset();
+      form.reset();
     } catch (e) {
       setStatus('error');
       setError(e instanceof Error ? e.message : '잠시 후 다시 시도해주세요.');
